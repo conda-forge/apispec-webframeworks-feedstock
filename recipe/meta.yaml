@@ -1,31 +1,36 @@
 {% set name = "apispec-webframeworks" %}
 {% set version = "0.5.2" %}
 
+
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/apispec-webframeworks-{{ version }}.tar.gz
   sha256: 0db35b267914b3f8c562aca0261957dbcb4176f255eacc22520277010818dcf3
 
 build:
-  number: 3
-  script: "{{ PYTHON }} -m pip install . -vv"
+  number: 4
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
-    - python
+    - python >=3.6
   run:
-    - setuptools
-    - apispec
-    - python
+    - apispec >=2.0.0
+    - python >=3.6
 
 test:
   imports:
     - apispec_webframeworks
     - apispec_webframeworks.tests
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
   home: https://github.com/marshmallow-code/apispec-webframeworks
