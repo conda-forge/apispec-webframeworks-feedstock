@@ -1,5 +1,5 @@
 {% set name = "apispec-webframeworks" %}
-{% set version = "0.5.2" %}
+{% set version = "1.1.0" %}
 
 
 package:
@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/apispec-webframeworks-{{ version }}.tar.gz
-  sha256: 0db35b267914b3f8c562aca0261957dbcb4176f255eacc22520277010818dcf3
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: b095df4afb3d773bdf60f0a599b808fd2ca316a8e452f8ce23b10b4cb0e717bf
 
 build:
-  number: 4
+  number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
