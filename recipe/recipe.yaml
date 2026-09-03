@@ -29,7 +29,6 @@ tests:
   - python:
       imports:
         - apispec_webframeworks
-        - apispec_webframeworks.tests
       pip_check: true
       python_version:
         - ${{ python_min }}.*
