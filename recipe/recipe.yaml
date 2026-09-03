@@ -1,29 +1,29 @@
 schema_version: 1
 
 context:
-  name: apispec-webframeworks
   version: "1.2.0"
 
 package:
-  name: ${{ name|lower }}
+  name: apispec-webframeworks
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/apispec-webframeworks-${{ version }}.tar.gz
+  url: https://pypi.org/packages/source/a/apispec-webframeworks/apispec_webframeworks-${{ version }}.tar.gz
   sha256: 5689288c266a2713c2f516eacc14ea2fec9b21f193edc8f659c770342b97fd81
 
 build:
   number: 0
   noarch: python
-  script: ${{ PYTHON }} -m pip install . -vv
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - pip
     - python ${{ python_min }}.*
+    - pip
+    - flit-core <4
   run:
-    - apispec >=2.0.0
     - python >=${{ python_min }}
+    - apispec >=6.0.0
 
 tests:
   - python:
@@ -36,9 +36,9 @@ tests:
         - "*"
 
 about:
+  summary: Web framework plugins for apispec.
   license: MIT
   license_file: LICENSE
-  summary: Web framework plugins for apispec.
   homepage: https://github.com/marshmallow-code/apispec-webframeworks
   repository: https://github.com/marshmallow-code/apispec-webframeworks
   documentation: https://pypi.org/project/apispec-webframeworks/#description
