@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: apispec-webframeworks
+  version: "1.2.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/apispec-webframeworks-${{ version }}.tar.gz
+  sha256: 5689288c266a2713c2f516eacc14ea2fec9b21f193edc8f659c770342b97fd81
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - apispec >=2.0.0
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - apispec_webframeworks
+        - apispec_webframeworks.tests
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Web framework plugins for apispec.
+  homepage: https://github.com/marshmallow-code/apispec-webframeworks
+  repository: https://github.com/marshmallow-code/apispec-webframeworks
+  documentation: https://pypi.org/project/apispec-webframeworks/#description
+
+extra:
+  recipe-maintainers:
+    - ndmaxar
+    - oblute
+    - rluria14
